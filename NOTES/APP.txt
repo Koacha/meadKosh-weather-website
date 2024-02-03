@@ -1,0 +1,54 @@
+const path = require('path')
+const express = require('express')
+
+// console.log(__dirname)
+// console.log(path.join(__dirname, '../public'))
+
+const app = express()
+const publicDirectoryPath = path.join(__dirname, '../public')
+app.use(express.static(publicDirectoryPath))
+
+
+
+/*app.get('', (req, res) => {
+    res.send('<h1>Hello express weather</h1>')
+})
+*/
+app.get('/help', (req, res) => {
+    res.send(
+        [
+            {"name": "Alice", "age": 30},
+            {"name": "Bob", "age": 25},
+            {"name": "Charlie", "age": 35},
+            {"name": "Diana", "age": 40}
+          ]
+          
+          
+    )
+})
+
+app.get('/about', (req, res) => {
+    res.send('<h1>About page<h1>')
+})
+
+app.get('/weather', (req, res) => {
+    res.send({
+        "location": "Sample City",
+        "forecast": [
+          {"day": "Monday", "temperature": {"high": 28, "low": 18}, "condition": "Sunny"},
+          {"day": "Tuesday", "temperature": {"high": 25, "low": 15}, "condition": "Partly Cloudy"},
+          {"day": "Wednesday", "temperature": {"high": 22, "low": 14}, "condition": "Rain"},
+          {"day": "Thursday", "temperature": {"high": 24, "low": 16}, "condition": "Thunderstorms"},
+          {"day": "Friday", "temperature": {"high": 27, "low": 17}, "condition": "Sunny"}
+        ]
+      }
+      )
+})
+
+app.listen(3000, () => {
+    console.log('Server is up on port 3000')
+})
+
+// to run this we have to use node src/app.js instead of node app.js becausse the app is not in the root folder
+
+// let's use nodemon to start the server

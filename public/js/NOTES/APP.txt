@@ -1,0 +1,79 @@
+
+fetch('http://localhost:3000/weather?address=!').then((response) => {
+    response.json().then((data) => {
+        if (data.error) {
+            console.log(data.error + 'Ish');
+        } else {
+            console.log(data.location);
+            console.log(data.forecast);
+        }
+    });
+});
+
+const weatherForm = document.querySelector('form');
+const search = document.querySelector('input');
+
+weatherForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const location = search.value;
+    console.log(location);
+});
+
+
+The difference in behavior between the two snippets likely stems from how they handle the response from the server:
+
+In the first snippet, you directly attempt to parse the response as JSON with response.json().
+If the server response is not valid JSON (which might be the case if there's an error or
+ if the server is responding with plain text) this will fail silently and you won't see any logged error that explains why:
+ ***************************************************************************
+
+ fetch('http://localhost:3000/weather?address=!').then((response) => {
+    response.json().then((data) => {
+        if (data.error) {
+            console.log(data.error + 'Ish');
+        } else {
+            console.log(data.location);
+            console.log(data.forecast);
+        }
+    });
+});
+******************************************************************
+
+If response.json() fails due to invalid JSON, it returns a rejected promise, 
+but in this snippet, there is no catch handler for that promise, which means the error isn't caught or logged.
+
+
+
+In the second snippet, you first get the response as plain text with response.text(). 
+This will succeed regardless of whether the response is valid JSON or not. 
+You then attempt to parse it inside a try block, which allows you to catch and log any errors that occur during parsing.
+================================================================================================
+fetch(`http://localhost:3000/weather?address=${location}`)
+    .then(response => response.text())
+    .then(text => {
+        try {
+            const data = JSON.parse(text);
+            if (data.error) {
+                console.log(data.error + ' Ish');
+            } else {
+                console.log(data.location);
+                console.log(data.forecast);
+            }
+        } catch (error) {
+            console.error('Error parsing JSON:', error);
+        }
+    })
+    .catch(error => {
+        console.error('Network error:', error);
+    });
+=================================================================================================
+
+
+
+By first converting the response to text and then parsing it as JSON, you are able to catch two types of errors:
+
+Errors that occur if the response is not valid JSON.
+Other network errors that might occur during the fetch.
+This is why the second snippet gives you a more reliable error logging—it captures 
+and handles the error explicitly if the JSON parsing fails, 
+providing you with detailed information about what went wrong.

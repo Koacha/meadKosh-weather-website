@@ -1,0 +1,81 @@
+Basic Stylesheet for HTML Documents
+
+/*h1 stylrd*/
+h1 {
+    color: rebeccapurple;
+}
+
+/*img Style */
+img {
+    width: 250px;
+}
+
+/* Body Styles */
+body {
+    font-family: 'Arial', sans-serif; /* Use a readable and widely supported font */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    background-color: white; /* Set background color to white for a clean look */
+    color: black; /* Default text color set to black for readability */
+  }
+  
+  /* Header Styles */
+  header {
+    background-color: lightgray; /* Light gray background for the header */
+    padding-top: 20px; /* Space above header content */
+    padding-bottom: 20px; /* Space below header content */
+    text-align: center; /* Center-align header text */
+  }
+  
+  header h1 {
+    margin: 0; /* Remove default margin around the H1 element */
+  }
+  
+  /* Navigation Styles */
+  nav ul {
+    list-style-type: none; /* Remove default list styling */
+    padding: 0; /* Remove default padding */
+  }
+  
+  nav ul li {
+    display: inline; /* Display list items inline */
+    margin-right: 10px; /* Space between navigation items */
+  }
+  
+  nav a {
+    text-decoration: none; /* Remove underline from links */
+    color: darkblue; /* Set link color */
+  }
+  
+  nav a:hover {
+    text-decoration: underline; /* Underline links on hover for visual feedback */
+  }
+  
+  /* Main Content Styles */
+  main {
+    padding: 20px; /* Add padding around main content for spacing */
+  }
+  
+  /* Section Styles */
+  section {
+    margin-bottom: 20px; /* Add space below each section */
+    background-color: aqua;
+  }
+  
+  /* Article Styles */
+  article {
+    margin-bottom: 20px; /* Add space below each article */
+  }
+  
+  /* Footer Styles */
+  footer {
+    background-color: lightgray; /* Light gray background for the footer */
+    color: black; /* Set footer text color */
+    text-align: center; /* Center-align footer text */
+    padding-top: 10px; /* Space above footer content */
+    padding-bottom: 10px; /* Space below footer content */
+  }
+  
+  /* Ensure the footer sticks to the bottom of the page */
+  /* This basic CSS does not include a sticky footer implementation */
+  
