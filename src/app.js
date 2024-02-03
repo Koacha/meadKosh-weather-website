@@ -9,6 +9,7 @@ const forecast = require('./utils/forecast')
 // console.log(path.join(__dirname, '../public'))
 
 const app = express()
+const port = process.env.PORT || 3000
 
 
 
@@ -119,8 +120,8 @@ app.get("*", (req, res) => {
     
       
 
-app.listen(3000, () => {
-    console.log('Server is up on port 3000')
+app.listen(port, () => {
+    console.log('Server is up on port ' + port)
 })
 
 // to run this we have to use node src/app.js instead of node app.js becausse the app is not in the root folder

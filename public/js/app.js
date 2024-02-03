@@ -13,7 +13,7 @@ weatherForm.addEventListener('submit', (e) => {
     messageOne.textContent = 'Loading ...'
     messageTwo.textContent = ''
 
-    fetch(`http://localhost:3000/weather?address=${location}`) // could have used (--- + location) instead of ${location}`) 
+    fetch(`/weather?address=${location}`) // could have used (--- + location) instead of ${location}`) 
         .then(response => response.text())  // Get the response text
         .then(text => {
             console.log(text);  // Log it to the console
